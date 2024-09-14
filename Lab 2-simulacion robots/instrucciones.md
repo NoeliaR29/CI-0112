@@ -1,1 +1,2 @@
-"# CI-0112" 
+"Lab 2"
+Este programa se inicializa preguntandole al usuario sobre la cantidad de robots que desea en su simulación, también se ingresan los atributos de cada robot y el código empieza con la simulación al finalizar la solicitud de datos.Los robots se atacan aleatoriamente, en el momento en que uno se queda sin vida, se elimina de la lista de robots con vida, al quedar un solo robot se define como elganador de la simulación.
