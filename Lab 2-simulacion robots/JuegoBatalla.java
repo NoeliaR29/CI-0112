@@ -6,7 +6,7 @@ public class JuegoBatalla {
         this.robots = new ArrayList();
     }
 
-    public void iniciarJuego() {
+    public void solicitarDatos() {
         Scanner ent = new Scanner(System.in);
         int cantRobots;
         do {
@@ -44,40 +44,50 @@ public class JuegoBatalla {
     }
 
     public void iniciarBatalla() {
-    while (robots.size() > 1) {
+             while (robots.size() > 1) {
         for (int i = 0; i < robots.size(); i++) {
             Robot atacante = robots.get(i);
-            if (atacante.getPuntosVida() <= 0) {
-                robots.remove(i);
-                i--; 
+            if (atacante.estaDestruido()) {
                 continue;
             }
-            int indDefensor = (int) (Math.random() * robots.size());
-            Robot defensor = robots.get(indDefensor);
-            if (atacante != defensor) {
-                System.out.println(atacante.getNombre() + " ataca a " + defensor.getNombre());
-                atacante.atacar(defensor);
-                if (defensor.getPuntosVida() <= 0) {
-                    System.out.println(defensor.getNombre() + " ha sido destruido.");
-                    robots.remove(defensor);
-                }
+            Robot defensor;
+            do {
+                defensor = robots.get((int) (Math.random() * robots.size()));
+            } while (atacante == defensor || defensor.estaDestruido());
+    
+            System.out.println(atacante.getNombre() + " ataca a " + defensor.getNombre());
+            atacante.atacar(defensor);
+            if (defensor.getPuntosVida() <= 0) {
+                System.out.println(defensor.getNombre() + " ha sido destruido.");
+                defensor.marcarDestruido();
             }
+            }
+        eliminar(robots);
         }
-    }
-    Ganador();
+        robotGanador();
     }
 
-    public void Ganador() {
+    public void robotGanador() {
         if (robots.size() == 1) {
          Robot ganador = robots.get(0);
             System.out.println("El ganador del juego es: " + ganador.getNombre());
+            System.out.println("Fin de la simulación :)");
         } else {
             System.out.println("no hay vivos.");
+        }
+    }
+    
+        public void eliminar(ArrayList<Robot> robots) {
+        for (int i = 0; i < robots.size(); i++) {
+            if (robots.get(i).estaDestruido()) {
+                robots.remove(i);
+                i--; 
+            }
         }
     }
 
     public static void main(String[] args) {
         JuegoBatalla juego = new JuegoBatalla();
-        juego.iniciarJuego();
+        juego.solicitarDatos();
     }
 }
