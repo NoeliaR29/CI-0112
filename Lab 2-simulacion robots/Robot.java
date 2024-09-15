@@ -1,11 +1,12 @@
 import java.util.Random;
 public class Robot {
-    private String nombre; private int puntosVida; private int ataque; private int defensa;
+    private String nombre; private int puntosVida; private int ataque; private int defensa;private boolean destruido;
     public Robot(String nombre, int puntosVida, int ataque, int defensa) {
         this.nombre = nombre;
         this.puntosVida = puntosVida;
         this.ataque = ataque;
         this.defensa = defensa;
+        this.destruido = false;
     }
 
     public void atacar(Robot otroRobot) {
@@ -45,5 +46,13 @@ public class Robot {
 
     public String toString() {
         return "Robot: " + nombre + " , Vida: " + puntosVida + " , Ataque: " + ataque + " , Defensa: " + defensa;
+    }
+    
+    public boolean estaDestruido() {
+        return destruido;
+    }
+
+    public void marcarDestruido() {
+        this.destruido = true;
     }
 }
