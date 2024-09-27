@@ -1,6 +1,8 @@
 import java.util.Random;
+import java.util.Scanner;
 public class Arrays
 {
+    Scanner ent = new Scanner(System.in);
     private static int [] array;
     private static Random random = new Random();
     public Arrays( int [] numeros ){
@@ -28,25 +30,64 @@ public class Arrays
     }
     
     public void ordenamiento(){
-        int posicionM;
-        int valorM = 0;
         for(int i = 0 ; i < this.array.length; i++){
-            posicionM = i;
-            valorM = array[i];
+            int posicionM = i;
+            int valorM = array[i];
             for (int j = i + 1; j < this.array.length; j++){
                 if(valorM > array[j]){
                     posicionM = j;
                     valorM = array[j];
                 }
-                
-                if (posicionM != i){
-                    int temp = array[j];
-                    array [j]= array[posicionM];
+            }
+            
+            if (posicionM != i){
+                    int temp = array[i];
+                    array [i]= array[posicionM];
                     array[posicionM]= temp;
                 }
+        }
+        this.imprimir();
+    }
+    
+    public void busquedaSecuencial(int parametro){
+        for( int i = 0;i < this.array.length; i++){
+            if (parametro == array[i]){
+                System.out.println ("el parámetro ingresado está en la posición: "+ i);
             }
         }
-        System.out.println(" el valor menor ingresado en el array es: "+ valorM);
     }
-
+    
+    public void pareseImpares (){
+        int cantImpa = 0;
+        int cantPa = 0;
+        for( int i = 0;i < this.array.length; i++){
+            if (array[i] % 2 == 0){
+                cantPa++;
+            }else{
+                cantImpa++;
+            }
+        }
+        System.out.println ("la cantidad de números pares es: "+ cantPa);
+        System.out.println ("la cantidad de números impares es: "+ cantImpa);
+        
+    }
+    
+    public void resta(){
+        int vMayor = 0;
+        int vMenor = 0;
+        for( int i = 0;i < this.array.length; i++){
+            vMayor = array[i];
+            vMenor = array[i];
+            if (array[i] < vMenor){
+                vMenor = array[i];
+            }
+            if (array[i]> vMayor){
+                vMayor = array[i];
+            }
+        }
+        System.out.println (vMayor);
+        System.out.println (vMenor);
+        int resta = vMayor - vMenor;
+        System.out.println ("la resta de los números menores y mayores es: "+ resta);
+    }
 }

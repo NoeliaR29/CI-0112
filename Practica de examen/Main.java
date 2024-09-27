@@ -5,7 +5,9 @@ public class Main
         int [] array = {1,4,5,6};
         Arrays luis = new Arrays(array);
         luis.imprimir();
-        luis.cambiar();
         luis.ordenamiento();
+        luis.busquedaSecuencial(5);
+        luis.pareseImpares();
+        luis.resta();
     }
 }
