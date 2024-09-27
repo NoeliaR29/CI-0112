@@ -73,11 +73,9 @@ public class Arrays
     }
     
     public void resta(){
-        int vMayor = 0;
-        int vMenor = 0;
+        int vMayor = array[0];
+        int vMenor = array[0];
         for( int i = 0;i < this.array.length; i++){
-            vMayor = array[i];
-            vMenor = array[i];
             if (array[i] < vMenor){
                 vMenor = array[i];
             }
