@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Arrays
+comment1.params=numeros
+comment1.target=Arrays(int[])
+comment2.params=array
+comment2.target=void\ setArray(int[])
+comment3.params=
+comment3.target=void\ imprimir()
+comment4.params=
+comment4.target=void\ cambiar()
+comment5.params=
+comment5.target=void\ ordenamiento()
+comment6.params=parametro
+comment6.target=void\ busquedaSecuencial(int)
+comment7.params=
+comment7.target=void\ pareseImpares()
+comment8.params=
+comment8.target=void\ resta()
+numComments=9
