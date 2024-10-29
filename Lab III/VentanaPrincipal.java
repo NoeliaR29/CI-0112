@@ -1,6 +1,8 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VentanaPrincipal extends JFrame {
     public VentanaPrincipal() {
@@ -42,9 +44,36 @@ public class VentanaPrincipal extends JFrame {
         panelFormulario.add(campoEmail);
         panelFormulario.add(etiquetaTelefono);
         panelFormulario.add(campoTelefono);
-        add(panelFormulario);
 
+        
         JButton botonGuardar = new JButton("Guardar");
+
+        JLabel comboBoxLabel = new JLabel ("tipos de usuario: ");
+        String[] tiposDeUsuario = {"Cliente", "Empleado", "Administrador"};
+        JComboBox<String> tiposDeUsuarioComboBox = new JComboBox<String>(tiposDeUsuario);
+        panelFormulario.add(comboBoxLabel);
+        panelFormulario.add(tiposDeUsuarioComboBox);
+        add(panelFormulario);
+        setVisible(true);
+
+        JLabel checkBoxLabel = new JLabel("términos y condiciones: ");
+        JCheckBox elegir = new JCheckBox("Aceptar términos y condiciones.");
+        checkBoxLabel.setBounds(20,10,20,10);
+        elegir.setBounds(20,10,20,10);
+        panelFormulario.add(checkBoxLabel);
+        panelFormulario.add(elegir);
+
+         
+        elegir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (elegir.isSelected()) {
+                    JOptionPane.showMessageDialog(panelFormulario, "Has aceptado los términos y condiciones.");
+                } else {
+                    JOptionPane.showMessageDialog(panelFormulario, "No has aceptado los términos y condiciones.");
+                }
+            }
+        });
+
         botonGuardar.addActionListener(e -> {
             String nombre = campoNombre.getText();
             String email = campoEmail.getText();
@@ -66,7 +95,6 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public static void main(String[] args) {
-        VentanaPrincipal ventana = new VentanaPrincipal();
-        ventana.setVisible(true);
+        SwingUtilities.invokeLater(() -> new VentanaPrincipal());
     }
 }
