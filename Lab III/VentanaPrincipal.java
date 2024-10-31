@@ -3,6 +3,7 @@ import java.io.IOException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.FlowLayout;
 
 public class VentanaPrincipal extends JFrame {
     public VentanaPrincipal() {
@@ -32,7 +33,7 @@ public class VentanaPrincipal extends JFrame {
         JLabel etiquetaEmail = new JLabel("Email");
         JTextField campoEmail = new JTextField(20);
 
-        JLabel etiquetaNombre = new JLabel("Email");
+        JLabel etiquetaNombre = new JLabel("Nombre");
         JTextField campoNombre = new JTextField(20);
 
         JLabel etiquetaTelefono = new JLabel("Teléfono");
@@ -45,7 +46,9 @@ public class VentanaPrincipal extends JFrame {
         panelFormulario.add(etiquetaTelefono);
         panelFormulario.add(campoTelefono);
 
-        
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new FlowLayout()); 
+        JButton limpiar = new JButton("Limpiar");
         JButton botonGuardar = new JButton("Guardar");
 
         JLabel comboBoxLabel = new JLabel ("tipos de usuario: ");
@@ -53,15 +56,17 @@ public class VentanaPrincipal extends JFrame {
         JComboBox<String> tiposDeUsuarioComboBox = new JComboBox<String>(tiposDeUsuario);
         panelFormulario.add(comboBoxLabel);
         panelFormulario.add(tiposDeUsuarioComboBox);
-        add(panelFormulario);
-        setVisible(true);
 
         JLabel checkBoxLabel = new JLabel("términos y condiciones: ");
         JCheckBox elegir = new JCheckBox("Aceptar términos y condiciones.");
         checkBoxLabel.setBounds(20,10,20,10);
-        elegir.setBounds(20,10,20,10);
+        elegir.setBounds(50,10,20,10);
         panelFormulario.add(checkBoxLabel);
         panelFormulario.add(elegir);
+
+        panelBotones.add(limpiar);
+        panelBotones.add(botonGuardar);
+        panelFormulario.add(panelBotones);
 
          
         elegir.addActionListener(new ActionListener() {
@@ -73,6 +78,19 @@ public class VentanaPrincipal extends JFrame {
                 }
             }
         });
+
+        limpiar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                campoNombre.setText("");
+                campoEmail.setText("");
+                campoTelefono.setText("");
+                tiposDeUsuarioComboBox.setSelectedIndex(0);
+                elegir.setSelected(false);
+            }
+        });
+
+        add(panelFormulario);
+        setVisible(true);
 
         botonGuardar.addActionListener(e -> {
             String nombre = campoNombre.getText();
@@ -90,9 +108,8 @@ public class VentanaPrincipal extends JFrame {
             }
 
         });
-
-        panelFormulario.add(botonGuardar); 
     }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new VentanaPrincipal());
