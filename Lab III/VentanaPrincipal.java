@@ -98,7 +98,7 @@ public class VentanaPrincipal extends JFrame {
             String telefono = campoTelefono.getText();
             String tiposUsuario = (String) tiposDeUsuarioComboBox.getSelectedItem(); 
         
-            if (tiposUsuario == null || tiposUsuario.isEmpty()) {
+            if (tiposUsuario == null) {
                 JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario.");
                 return; 
             }
