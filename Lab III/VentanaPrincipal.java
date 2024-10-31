@@ -96,10 +96,21 @@ public class VentanaPrincipal extends JFrame {
             String nombre = campoNombre.getText();
             String email = campoEmail.getText();
             String telefono = campoTelefono.getText();
-
+            String tiposUsuario = (String) tiposDeUsuarioComboBox.getSelectedItem(); 
+        
+            if (tiposUsuario == null || tiposUsuario.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario.");
+                return; 
+            }
+            
+            if (!elegir.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Debes aceptar términos y condiciones para continuar.");
+                return; 
+            }
+        
             try {
                 FileWriter writer = new FileWriter("datos_usuario.txt", true);
-                writer.write("Nombre: " + nombre + ", Email: " + email + ", Teléfono: " + telefono);
+                writer.write("Nombre: " + nombre + ", Email: " + email + ", Teléfono: " + telefono + ", Tipo de usuario: " + tiposUsuario + "\n");
                 writer.close();
                 JOptionPane.showMessageDialog(null, "Datos guardados exitosamente.");
 
