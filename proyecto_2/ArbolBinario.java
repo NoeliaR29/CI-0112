@@ -11,23 +11,30 @@ public class ArbolBinario {
         this.agregarNodo2(this.raiz,nodo);
             }
     
-    public Nodo agregarNodo2(Nodo nodo, Nodo raiz) {
+    public Nodo agregarNodo2(Nodo raiz ,Nodo nodo) {
+        if (nodo ==null){
+            System.out.println("El nodo que deseas insertar está vacio.");
+            return raiz;
+        }
+
         if (raiz == null) {
-            this.setRaiz(nodo); 
+            this.setRaiz(nodo);
+            return nodo; 
         } else {
             if (nodo.getValor() <= raiz.getValor()) {
                 
                 if (raiz.getIzquierdo() == null) {
                     raiz.setIzquierdo(nodo); 
+                    
                 } else {
-                    agregarNodo2(nodo, raiz.getIzquierdo()); 
+                    raiz.setIzquierdo(agregarNodo2(raiz.getIzquierdo(), nodo));
                 }
             } else {
             
                 if (raiz.getDerecho() == null) {
                     raiz.setDerecho(nodo); 
                 } else {
-                    agregarNodo2(nodo, raiz.getDerecho()); 
+                    raiz.setDerecho(agregarNodo2(raiz.getDerecho(), nodo));
                 }
             }
         }
