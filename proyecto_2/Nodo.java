@@ -1,10 +1,10 @@
 public class Nodo {
     private Nodo izquierdo;   
     private Nodo derecho;
-    private int contiene;
+    private int valor;
 
-    public Nodo(int contiene) {
-        this.contiene = contiene;
+    public Nodo(int valor) {
+        this.valor = valor;
         this.izquierdo = null;
         this.derecho = null;
     }
@@ -19,19 +19,19 @@ public class Nodo {
     this.derecho = derecho;
     }
 
-    public void setContiene(int contiene){
-        this.contiene = contiene;
+    public void setValor(int valor){
+        this.valor = valor;
     }
 
     public Nodo getIzquierdo(){
         return izquierdo;
     }
 
-    public Nodo getderecho(){
+    public Nodo getDerecho(){
         return derecho;
     }
 
-    public int getContiene(){
-        return contiene;
+    public int getValor(){
+        return valor;
     }
 }
