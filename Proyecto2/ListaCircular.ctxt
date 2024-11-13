@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ListaCircular
+comment1.params=dato
+comment1.target=void\ insertarDato(java.lang.String)
+comment2.params=dato
+comment2.target=void\ eliminarDato(java.lang.String)
+comment3.params=dato
+comment3.target=void\ buscarDato(java.lang.String)
+numComments=4
