@@ -64,8 +64,58 @@ public class ArbolBinario {
                 }
     }
 
-   
-    
+    //método para eliminar nodos
+    public void eliminarNodo(int valor) {
+        raiz = eliminarNodoRec(raiz, valor);
+        }
+       
+    private Nodo eliminarNodoRec(Nodo raiz, int valor){
+        if (raiz == null) {
+            return raiz;
+        }
+        if(raiz.getValor()< valor){
+            raiz.setDerecho(eliminarNodoRec(raiz.getDerecho(), valor));
+            }else if(raiz.getValor()> valor){
+                raiz.setIzquierdo(eliminarNodoRec(raiz.getIzquierdo(), valor));
+                }else{
+                    raiz = eliminarPorTipoNodo(raiz);
+                }
+        return raiz;
+    }
+           
+    //método que distribuye cada tipo de eliminación para que el método recursivo no quede tan grande
+    private Nodo eliminarPorTipoNodo(Nodo raiz){
+        if (raiz.getIzquierdo() == null && raiz.getDerecho() == null) {
+            return null;
+            }else if(raiz.getIzquierdo() == null || raiz.getDerecho() == null){
+            return nodoUnHijo(raiz);
+                }else{
+                    return nodoDosHijos(raiz);
+                }
+            }
+
+    private Nodo nodoUnHijo(Nodo nodo) {
+        if (nodo.getIzquierdo() != null) {
+            return nodo.getIzquierdo();  
+        } else {
+            return nodo.getDerecho();  
+        }
+    }
+
+    private Nodo nodoDosHijos(Nodo raiz) {
+        Nodo sucesor = encontrarMinimo(raiz.getDerecho());
+        raiz.setValor(sucesor.getValor());
+        raiz.setDerecho(eliminarNodoRec(raiz.getDerecho(), sucesor.getValor()));
+        return raiz;
+    }
+
+    private Nodo encontrarMinimo(Nodo nodo) {
+        while (nodo.getIzquierdo() != null) {
+            nodo = nodo.getIzquierdo();
+        }
+        return nodo;
+    }
+
     public void setRaiz(Nodo raiz){
             this.raiz = raiz;
     }
