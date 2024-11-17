@@ -1,9 +1,9 @@
 
-public class Nodo{
+public class NodoLista{
     private String dato;
-    private Nodo siguiente;
+    private NodoLista siguiente;
     
-    public void Nodo(){
+    public void NodoLista(){
         this.dato= dato; // ver si cambiar por = dato
         this.siguiente = null;
     }
@@ -17,11 +17,11 @@ public class Nodo{
         return dato;
     }
     
-    public void setSiguiente (Nodo siguiente){
+    public void setSiguiente (NodoLista siguiente){
         this.siguiente = siguiente;
     } 
     
-    public Nodo getSiguiente(){
+    public NodoLista getSiguiente(){
         return siguiente;
     }
 }
