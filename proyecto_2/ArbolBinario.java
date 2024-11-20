@@ -6,17 +6,15 @@ public class ArbolBinario {
     }
     // necesita insercióm, busqueda, eliminación
 
-    //metodo para insertar nodos
+    //metodo para insertar nodos en el árbol
     public void agregarNodo(Nodo nodo) {
         this.agregarNodoRec(this.raiz,nodo);
             }
     
-    public Nodo agregarNodoRec(Nodo raiz ,Nodo nodo) {
-        if (nodo ==null){
-            System.out.println("El nodo que deseas insertar está vacio.");
-            return raiz;
+    public Nodo agregarNodoRec(Nodo raiz, Nodo nodo) {
+        if (nodo == null) {          
+        return raiz;
         }
-
         if (raiz == null) {
             this.setRaiz(nodo);
             return nodo; 
@@ -24,13 +22,11 @@ public class ArbolBinario {
             if (nodo.getValor() <= raiz.getValor()) {
                 
                 if (raiz.getIzquierdo() == null) {
-                    raiz.setIzquierdo(nodo); 
-                    
+                    raiz.setIzquierdo(nodo);  
                 } else {
                     raiz.setIzquierdo(agregarNodoRec(raiz.getIzquierdo(), nodo));
                 }
             } else {
-            
                 if (raiz.getDerecho() == null) {
                     raiz.setDerecho(nodo); 
                 } else {
@@ -40,7 +36,6 @@ public class ArbolBinario {
         }
         return raiz;
     }
-
     //método para buscar un nodo en el arbol
     public boolean encontrarNodo(int valor) {
         return buscarNodoRec(this.raiz, valor);
@@ -59,12 +54,11 @@ public class ArbolBinario {
                     return buscarNodoRec(raiz.getIzquierdo(), valor);
                 }
     }
-
     //método para eliminar nodos
     public void eliminarNodo(int valor) {
         raiz = eliminarNodoRec(raiz, valor);
         }
-       
+    //usa la recursividad para encontrar el nodo que quierer eliminar
     private Nodo eliminarNodoRec(Nodo raiz, int valor){
         if (raiz == null) {
             return raiz;
@@ -78,7 +72,6 @@ public class ArbolBinario {
                 }
         return raiz;
     }
-           
     //método que distribuye cada tipo de eliminación para que el método recursivo no quede tan grande
     private Nodo eliminarPorTipoNodo(Nodo raiz){
         if (raiz.getIzquierdo() == null && raiz.getDerecho() == null) {
@@ -89,7 +82,7 @@ public class ArbolBinario {
                     return nodoDosHijos(raiz);
                 }
             }
-    //eliminacion de un nodo que tiene solo un hijo
+    //metodo de eliminacion de un nodo que tiene solo un hijo
     private Nodo nodoUnHijo(Nodo nodo) {
         if (nodo.getIzquierdo() != null) {
             return nodo.getIzquierdo();  
@@ -97,7 +90,7 @@ public class ArbolBinario {
             return nodo.getDerecho();  
         }
     }
-    //eliminación de un nodo con dos hijos
+    //metodo de eliminación de un nodo con dos hijos
     private Nodo nodoDosHijos(Nodo raiz) {
         Nodo sucesor = encontrarMinimo(raiz.getDerecho());
         raiz.setValor(sucesor.getValor());
@@ -112,7 +105,7 @@ public class ArbolBinario {
         }
         return nodo;
     }
-
+    //set y get
     public void setRaiz(Nodo raiz){
             this.raiz = raiz;
     }
