@@ -42,15 +42,11 @@ public class ArbolBinario {
     }
 
     //método para buscar un nodo en el arbol
-    public void encontrarNodo(int valor){
-        if (buscarNodoRec(this.raiz,valor)== true){
-            System.out.println("el nodo se encuentra en el árbol.");
-        }else{
-            System.out.println("el nodo no se encuentra en el árbol.");
-        }
+    public boolean encontrarNodo(int valor) {
+        return buscarNodoRec(this.raiz, valor);
     }
     
-    private boolean buscarNodoRec(Nodo raiz, int valor){
+    public boolean buscarNodoRec(Nodo raiz, int valor){
         if(raiz == null){
             return false;
         }
@@ -93,7 +89,7 @@ public class ArbolBinario {
                     return nodoDosHijos(raiz);
                 }
             }
-
+    //eliminacion de un nodo que tiene solo un hijo
     private Nodo nodoUnHijo(Nodo nodo) {
         if (nodo.getIzquierdo() != null) {
             return nodo.getIzquierdo();  
@@ -101,7 +97,7 @@ public class ArbolBinario {
             return nodo.getDerecho();  
         }
     }
-
+    //eliminación de un nodo con dos hijos
     private Nodo nodoDosHijos(Nodo raiz) {
         Nodo sucesor = encontrarMinimo(raiz.getDerecho());
         raiz.setValor(sucesor.getValor());
@@ -109,6 +105,7 @@ public class ArbolBinario {
         return raiz;
     }
 
+    //metodo para ir al minimo del arbol, para el nodo con dos hijos
     private Nodo encontrarMinimo(Nodo nodo) {
         while (nodo.getIzquierdo() != null) {
             nodo = nodo.getIzquierdo();
