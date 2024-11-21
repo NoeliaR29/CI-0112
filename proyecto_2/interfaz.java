@@ -33,7 +33,7 @@ public class interfaz {
         controlesArbol.setLayout(new BoxLayout(controlesArbol, BoxLayout.Y_AXIS));
         JTextField campoNodo = new JTextField(3);
 
-        //creación del panel para manejar los botones juntos, a la par
+        //creación del panel para manejar los botones juntos en un solo Jpanel
         JPanel panelBotones = new JPanel();
         panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER));  
 
