@@ -1,10 +1,10 @@
 public class NodoListaDoblemente {
     private int dato;
-    Nodo nodoAnterior;
-    Nodo nodoSiguiente;
+    private NodoListaDoblemente nodoAnterior;
+    private NodoListaDoblemente nodoSiguiente;
 
     //Constructor
-    public NodoListaDoblemente(){
+    public NodoListaDoblemente(int dato){
         this.dato = dato;
         this.nodoAnterior = null;
         this.nodoSiguiente = null;
@@ -18,17 +18,17 @@ public class NodoListaDoblemente {
         return this.dato;
     }
 
-    public void setNodoAnterior(Nodo nodoAnterior){
+    public void setNodoAnterior(NodoListaDoblemente nodoAnterior){
         this.nodoAnterior = nodoAnterior;
     }
-    public Nodo getNodoAnterior(){
+    public NodoListaDoblemente getNodoAnterior(){
         return this.nodoAnterior;
     }
-    
-    public void setNodoSiguiente(Nodo nodoSiguiente){
+
+    public void setNodoSiguiente(NodoListaDoblemente nodoSiguiente){
         this.nodoSiguiente = nodoSiguiente;
     }
-    public Nodo getNodoSiguiente(){
+    public NodoListaDoblemente getNodoSiguiente(){
         return this.nodoSiguiente;
     }
 }
