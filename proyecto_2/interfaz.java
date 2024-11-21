@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class interfaz {
     public static void main(String[] args) {
@@ -14,7 +12,7 @@ public class interfaz {
         panelListaCircular.setLayout(new BorderLayout()); 
 
         JPanel panelListaDoble = new JPanel();
-        panelListaDoble.setBackground(new Color(193, 255, 193)); 
+        panelListaDoble.setBackground(new Color(230, 230, 250)); 
         panelListaDoble.setLayout(new BorderLayout());
 
         // ARBOL BINARIO
