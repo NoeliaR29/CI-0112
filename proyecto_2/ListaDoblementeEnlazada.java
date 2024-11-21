@@ -48,8 +48,25 @@ public class ListaDoblementeEnlazada {
         NodoListaDoblemente nodoEliminar = buscar(dato);
 
         if(nodoEliminar == null){
-            return; //No se encuentra el nodoD
+            return; //No se encuentra el nodo
         }
-        
+
+        if(cabeza == cola){
+            cabeza = null;
+            cola = null;
+        } else if (nodoEliminar == cabeza) {
+            cabeza = cabeza.getNodoSiguiente();
+            if (cabeza != null){
+                cabeza.setNodoAnterior(null);
+
+            }
+        }else if (nodoEliminar == cola) {
+            cola.getNodoAnterior();
+            if(cola != null){
+                cola.setNodoSiguiente(null);
+            }
+        }else{//nodo en algun otro punto de la lista
+
+        }
     }
 }
