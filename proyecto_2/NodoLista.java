@@ -3,7 +3,7 @@ public class NodoLista{
     private String dato;
     private NodoLista siguiente;
     
-    public void NodoLista(){
+    public NodoLista(String dato){
         this.dato= dato; // ver si cambiar por = dato
         this.siguiente = null;
     }

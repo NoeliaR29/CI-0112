@@ -107,5 +107,82 @@ public class interfaz {
         ventana.setLayout(new BorderLayout());
         ventana.add(splitPanePrincipal, BorderLayout.CENTER);
         ventana.setVisible(true);
+        
+    // Lista Circular 
+        
+        ListaCircular listaCircular = new ListaCircular(); 
+        
+        JPanel panelTituloListaCircular = new JPanel();
+        panelTituloListaCircular.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+        JLabel tituloListaCircular = new JLabel("LISTA CIRCULAR");
+        panelTituloListaCircular.add(tituloListaCircular);
+        
+        JPanel controlesListaCircular = new JPanel();
+        controlesListaCircular.setLayout(new BoxLayout(controlesListaCircular, BoxLayout.Y_AXIS));
+        JTextField campoDatoListaCircular = new JTextField(3);
+
+        JPanel panelBotonesListaCircular = new JPanel();
+        panelBotonesListaCircular.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JButton botonAgregarListaCircular = new JButton("Agregar dato");
+        JButton botonEliminarListaCircular = new JButton("Eliminar dato");
+        JButton botonBuscarListaCircular = new JButton("Buscar dato");
+        
+        panelBotonesListaCircular.add(botonAgregarListaCircular);
+        panelBotonesListaCircular.add(botonEliminarListaCircular);
+        panelBotonesListaCircular.add(botonBuscarListaCircular);
+        
+        controlesListaCircular.add(Box.createVerticalStrut(20));
+        controlesListaCircular.add(new JLabel("Valor del dato:"));
+        controlesListaCircular.add(campoDatoListaCircular);
+        controlesListaCircular.add(Box.createVerticalStrut(20));
+        controlesListaCircular.add(panelBotonesListaCircular);
+        
+        panelListaCircular.add(panelTituloListaCircular, BorderLayout.NORTH);
+        panelListaCircular.add(controlesListaCircular, BorderLayout.SOUTH);
+        
+        // actions para botones de la lista circular
+        
+        //  agregar dato a lista circular
+        
+        botonAgregarListaCircular.addActionListener(e-> {
+            try{
+                String dato =  campoDatoListaCircular.getText();
+                listaCircular.insertarDato(dato);
+                JOptionPane.showMessageDialog(ventana, "Se ha agregado el dato: " + dato + " a la lista");
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(ventana, "Ha ingresado un dato inválido");
+            }
+        });
+        
+        // action para botón de eliminar dato en lista circular
+        
+        botonEliminarListaCircular.addActionListener(e-> {
+            try{
+                String dato = campoDatoListaCircular.getText();
+                listaCircular.eliminarDato(dato);
+                JOptionPane.showMessageDialog(ventana, "El dato se ha eliminado");
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(ventana, "Ha ingresado un dato inválido");
+            }
+        });
+        
+        // action para botón de buscar dato en la lsita circular
+        
+        botonBuscarListaCircular.addActionListener(e-> {
+            try{
+                String dato= campoDatoListaCircular.getText();
+                boolean encontrado = listaCircular.buscarDato(dato);
+                if(encontrado){
+                    JOptionPane.showMessageDialog(ventana, "El dato: " + dato + "se encuentra en la lista");
+                }else{
+                    JOptionPane.showMessageDialog(ventana, "El dato no se ha encontrado en la lista");
+                }
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(ventana, "Ha ingresado un dato inválido");
+                
+            }
+        });
+                
     }
+                       
 }
