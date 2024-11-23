@@ -17,6 +17,10 @@ public class interfaz {
 
         // ARBOL BINARIO
         ArbolBinario arbolBinario = new ArbolBinario();
+        PanelDibujos graficaArbol = new PanelDibujos(arbolBinario);
+        graficaArbol.setPreferredSize(new Dimension(300, 200));
+        ventana.add(graficaArbol);
+        
         
         JPanel panelArbol = new JPanel();
         panelArbol.setBackground(new Color(193, 255, 193)); 
@@ -50,9 +54,10 @@ public class interfaz {
         controlesArbol.add(Box.createVerticalStrut(20));
         controlesArbol.add(panelBotones);
         
-        //agregar titulo y el panel donde están botones y text fiel 
+        //agregar titulo y el panel donde están botones y text field
         panelArbol.add(panelTitulo, BorderLayout.NORTH);
         panelArbol.add(controlesArbol, BorderLayout.SOUTH);
+        panelArbol.add(graficaArbol, BorderLayout.CENTER);
 
         //divisores de la ventana para que se muestren los tres a la vez
         JSplitPane splitPaneIzquierdo = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelListaCircular, panelArbol); 
@@ -70,9 +75,15 @@ public class interfaz {
                     int valor = Integer.parseInt(campoNodo.getText());
                     Nodo nuevoNodo = new Nodo(valor); 
                     arbolBinario.agregarNodo(nuevoNodo);
+                    graficaArbol.repaint();
                     JOptionPane.showMessageDialog(ventana, "Nodo agregado: " + valor);
+                    campoNodo.setText("");
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(ventana, "Ingresaste un dato inválido.");
+                    campoNodo.setText("");
+                }catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(ventana, ex.getMessage());
+                    campoNodo.setText("");
                 }
             }
         );
@@ -83,11 +94,15 @@ public class interfaz {
                 int valor = Integer.parseInt(campoNodo.getText());
                 if (arbolBinario.buscarNodoRec(arbolBinario.getRaiz(), valor)) {
                     JOptionPane.showMessageDialog(ventana, "Nodo encontrado: " + valor);
+                    campoNodo.setText("");
                 }else {
                     JOptionPane.showMessageDialog(ventana, "Nodo no encontrado: " + valor);
+                    campoNodo.setText("");
                 }
+                graficaArbol.repaint();
             }catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(ventana, "Ingresaste un dato inválido.");
+                campoNodo.setText("");
                 }
             }
         );
@@ -98,8 +113,11 @@ public class interfaz {
                     int valor = Integer.parseInt(campoNodo.getText());
                     arbolBinario.eliminarNodo(valor);
                     JOptionPane.showMessageDialog(ventana, "Nodo eliminado: " + valor);
+                    campoNodo.setText("");
+                    graficaArbol.repaint();
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(ventana, "Ingresaste un dato inválido.");
+                    campoNodo.setText("");
                 }
             }   
         );
