@@ -3,9 +3,9 @@ public class ListaCircular{
     private NodoLista primerNodo;
     private NodoLista ultimoNodo;
     
-    // m´etodo de inserción 
+    // método de inserción 
     public void insertarDato(String dato){
-        NodoLista nuevoDato = new NodoLista();
+        NodoLista nuevoDato = new NodoLista(dato);
         System.out.print("Digite el dato que desea ingresar a la lista"); 
         
         if (primerNodo == null){ // si la lista no tiene nada
@@ -38,15 +38,15 @@ public class ListaCircular{
            Esto se hace así para tener una mejor separación y orden*/
            
         do{ //uso de do while para que se ejecute todo hasta el final
-            if(elementoActual.getDato() == dato){ //se compara el dato del usuario con el actual
+            if(elementoActual.getDato().equals(dato)){ //se compara el dato del usuario con el actual
                 if (elementoActual == primerNodo){ // si el que se va a borrar es el primer nodo
                     if (primerNodo == ultimoNodo){
                         
-                        // tomar en cuneta si solo hay un elemento en todo la lista, se vacía toda
+                        // tomar en cuenta si solo hay un elemento en todo la lista, se vacía toda
                         primerNodo = null;
                         ultimoNodo = null; 
                     }else{ 
-                        primerNodo = primerNodo.getSiguiente(); // el siguiente se convierte en el prmero
+                        primerNodo = primerNodo.getSiguiente(); // el siguiente se convierte en el primero
                         ultimoNodo.setSiguiente(primerNodo); // actualiza a quien apunta el último
                     }    
                 
@@ -65,29 +65,29 @@ public class ListaCircular{
                 return; 
             }
             
-            anterior = elementoActual; // al seguir el nodo actual pasa a ser el anteriro
-            elementoActual = elementoActual.getSiguiente(); // devulve el nodo que apunta el actual
+            anterior = elementoActual; // al seguir el nodo actual pasa a ser el anterior
+            elementoActual = elementoActual.getSiguiente(); // devuelve el nodo que apunta el actual
         
         }while (elementoActual != primerNodo); 
         // se recorre la lista hasta que se llegue de nuevo al primero
         
-        // si no s eencunetra el dato ingresado, le muestra mensaje a usuario
+        // si no se encuentra el dato ingresado, se le muestra mensaje a usuario
         System.out.println("El elemento ingresado(" + dato + ")no está en la lista");
     }
         
     // método para la búsqueda
-    public void buscarDato(String dato){
+    public boolean buscarDato(String dato){
         if (primerNodo == null){ //considerar si la lista está vacía
             System.out.print("Aún no hay elementos en la lista");
-            return;
+            return false;
         }
         
         NodoLista elementoActual = primerNodo; // variable elementoActual que apunte al primer nodo para ir recorriendo la lista
         
         do{
-            if (elementoActual.getDato() == dato){ // cuadno el elementoActual, que es el que recorre la lista, sea igual al dato del usuario se muestramensaje indicando que está en la lista
+            if (elementoActual.getDato().equals(dato)){ // cuadno el elementoActual, que es el que recorre la lista, sea igual al dato del usuario se muestramensaje indicando que está en la lista
                 System.out.println("El elemento" + dato + "se encuentra en la lista");
-                return;
+                return true ;
             }
             
             elementoActual = elementoActual.getSiguiente();// se pasa al nodo que sigue
@@ -95,7 +95,6 @@ public class ListaCircular{
         
         //si se recorre todala lista y no se encuentra el dato se muestra un mensaje al usuario
         System.out.println( dato + "no se encuentra en la lista");
-        
-                
+        return false;            
     }
 }
