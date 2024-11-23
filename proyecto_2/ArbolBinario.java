@@ -1,46 +1,60 @@
 public class ArbolBinario {
     private Nodo raiz;
-    
+     /** 
+     * Constructor del árbol
+     * Se le da el valor null al árbol
+     */
     public ArbolBinario() {
         raiz = null;  
     }
-    // necesita insercióm, busqueda, eliminación
-
-    //metodo para insertar nodos en el árbol
+    /**
+     * Agrega un nodo al árbol binario llamando al método recursivo
+     * @param nodo es el que el usuario desea agregar al árbol
+     */
     public void agregarNodo(Nodo nodo) {
-        this.agregarNodoRec(this.raiz,nodo);
+        this.raiz = this.agregarNodoRec(this.raiz,nodo);
             }
     
+     /**
+     * Método recursivo que agrega un nodo al árbol segun su valor
+     * 
+     * @param raiz  raiz del subarbol en el que se debe insertar el nuevo nodo
+     * @param nodo nodo que se desea agregar
+     * @return retorna el valor de la raiz
+     */
     public Nodo agregarNodoRec(Nodo raiz, Nodo nodo) {
-        if (nodo == null) {          
-        return raiz;
-        }
         if (raiz == null) {
             this.setRaiz(nodo);
             return nodo; 
-        } else {
-            if (nodo.getValor() <= raiz.getValor()) {
-                
-                if (raiz.getIzquierdo() == null) {
-                    raiz.setIzquierdo(nodo);  
-                } else {
+        }
+        if (nodo.getValor() == raiz.getValor()) {
+            throw new IllegalArgumentException("El valor " + nodo.getValor() + " ya está en el árbol.");
+        }else {
+            if (nodo.getValor() < raiz.getValor()) {
                     raiz.setIzquierdo(agregarNodoRec(raiz.getIzquierdo(), nodo));
                 }
-            } else {
-                if (raiz.getDerecho() == null) {
-                    raiz.setDerecho(nodo); 
-                } else {
+             else {
                     raiz.setDerecho(agregarNodoRec(raiz.getDerecho(), nodo));
                 }
             }
+            return raiz;
         }
-        return raiz;
-    }
-    //método para buscar un nodo en el arbol
+    
+    /**
+     * Busca un nodo con el valor especificado en el árbol
+     * @param valor valor que se desea buscar
+     * @return true si el valor existe en el árbol, false en caso contrario
+     */
     public boolean encontrarNodo(int valor) {
         return buscarNodoRec(this.raiz, valor);
     }
     
+     /**
+     * Método recursivo para buscar un nodo en el árbol
+     * @param raiz raíz del subárbol donde se realizará la búsqueda
+     * @param valor valor que se desea buscar
+     * @return true si el nodo se encuentra, sino, false
+     */
     public boolean buscarNodoRec(Nodo raiz, int valor){
         if(raiz == null){
             return false;
@@ -54,11 +68,23 @@ public class ArbolBinario {
                     return buscarNodoRec(raiz.getIzquierdo(), valor);
                 }
     }
-    //método para eliminar nodos
+
+    /**
+     * Elimina un nodo específico del arbol
+     * 
+     * @param valor valor del nodo que se desea eliminar
+     */
     public void eliminarNodo(int valor) {
         raiz = eliminarNodoRec(raiz, valor);
         }
-    //usa la recursividad para encontrar el nodo que quierer eliminar
+
+    /**
+     * Método recursivo que elimina el nodo que el usuario desea
+     * 
+     * @param raiz nodo raíz del subárbol donde se buscará el nodo a eliminar
+     * @param valor valor del nodo que se desea eliminar.
+     * @return devuelve el nodo raíz del subárbol después de la eliminación
+     */
     private Nodo eliminarNodoRec(Nodo raiz, int valor){
         if (raiz == null) {
             return raiz;
@@ -72,44 +98,56 @@ public class ArbolBinario {
                 }
         return raiz;
     }
-    //método que distribuye cada tipo de eliminación para que el método recursivo no quede tan grande
-    private Nodo eliminarPorTipoNodo(Nodo raiz){
+
+    /**
+     * Elimina un nodo según su tipo: si tiene 0, 1 o 2 hijos
+     * 
+     * @param raiz nodo que se desea eliminar
+     * @return devuelve el nodo raíz del subárbol modificado
+     */
+    private Nodo eliminarPorTipoNodo(Nodo raiz) {
         if (raiz.getIzquierdo() == null && raiz.getDerecho() == null) {
-            return null;
-            }else if(raiz.getIzquierdo() == null || raiz.getDerecho() == null){
-            return nodoUnHijo(raiz);
-                }else{
-                    return nodoDosHijos(raiz);
-                }
-            }
-    //metodo de eliminacion de un nodo que tiene solo un hijo
-    private Nodo nodoUnHijo(Nodo nodo) {
-        if (nodo.getIzquierdo() != null) {
-            return nodo.getIzquierdo();  
-        } else {
-            return nodo.getDerecho();  
+            return null; 
         }
-    }
-    //metodo de eliminación de un nodo con dos hijos
-    private Nodo nodoDosHijos(Nodo raiz) {
+        if (raiz.getIzquierdo() == null) {
+            return raiz.getDerecho(); 
+        }
+        if (raiz.getDerecho() == null) {
+            return raiz.getIzquierdo(); 
+        }
         Nodo sucesor = encontrarMinimo(raiz.getDerecho());
-        raiz.setValor(sucesor.getValor());
-        raiz.setDerecho(eliminarNodoRec(raiz.getDerecho(), sucesor.getValor()));
+        raiz.setValor(sucesor.getValor()); 
+        raiz.setDerecho(eliminarNodoRec(raiz.getDerecho(), sucesor.getValor())); 
         return raiz;
     }
 
-    //metodo para ir al minimo del arbol, para el nodo con dos hijos
+    /**
+     * Encuentra el nodo con el valor mínimo en la parte del árbol analizada en el momento por el método recursivo
+     * 
+     * @param nodo nodo raíz del subárbol donde se buscará el nodo con el valor mínimo
+     * @return El nodo con el valor mínimo en esa parte
+     */
     private Nodo encontrarMinimo(Nodo nodo) {
         while (nodo.getIzquierdo() != null) {
             nodo = nodo.getIzquierdo();
         }
         return nodo;
     }
-    //set y get
+    
+    /**
+     * Asigna un nuevo nodo raíz al árbol
+     * 
+     * @param raiz El nodo raíz que se desea establecer
+     */
     public void setRaiz(Nodo raiz){
             this.raiz = raiz;
     }
 
+    /**
+     * retorna el valor que posee la variable raiz
+     * 
+     * @param raiz valor del nodo
+     */
     public Nodo getRaiz(){
         return raiz;
     }
