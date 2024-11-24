@@ -20,6 +20,8 @@ public class PanelDibujos extends JPanel {
      */
     protected void paintComponent(Graphics grafico) {
         super.paintComponent(grafico);
+        this.setBackground(new Color(193, 255, 193));
+        this.setOpaque(true); 
         if (arbol.getRaiz() != null) {
             dibujarArbol(grafico, arbol.getRaiz(), getWidth() / 2, 40, 100); // Llama a la función para dibujar el árbol
         }
@@ -27,7 +29,7 @@ public class PanelDibujos extends JPanel {
 
     /**
      * Método recursivo para dibujar el árbol binario en el panel
-     * Dibuja el nodo actual y las lineas que conectan cada nodo con sus hijos
+     * Dibuja el nodo actual y las lineas que conectan cada nodo con sus hijos con una separación pretederminada
      * @param grafico objeto utilizado para dibujar
      * @param nodo nodo actual que se va a dibujar
      * @param x posición en el eje X donde se dibujará el nodo
