@@ -3,6 +3,9 @@ import java.awt.*;
 
 public class interfaz {
     public static void main(String[] args) {
+        /** 
+        * crea la ventana de la interfaz, se coloca el titulo e indica el tamaño
+        */
         JFrame ventana = new JFrame("Árbol Binario, lista circular y doblemente enlazada");
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setSize(1200, 1000);
@@ -15,27 +18,40 @@ public class interfaz {
         panelListaDoble.setBackground(new Color(230, 230, 250)); 
         panelListaDoble.setLayout(new BorderLayout());
 
+        /** 
+        * Panel principal para la sección del árbol binario
+        */
+        JPanel panelArbol = new JPanel();
+        panelArbol.setLayout(new BorderLayout()); 
+
         // ARBOL BINARIO
+
+        /** 
+        * crear el árbol binario y el panel para su representación gráfica
+        */
         ArbolBinario arbolBinario = new ArbolBinario();
         PanelDibujos graficaArbol = new PanelDibujos(arbolBinario);
         graficaArbol.setPreferredSize(new Dimension(300, 200));
         ventana.add(graficaArbol);
-        
-        
-        JPanel panelArbol = new JPanel();
-        panelArbol.setBackground(new Color(193, 255, 193)); 
-        panelArbol.setLayout(new BorderLayout()); 
 
+        /** 
+        * Panel para colocar el titulo centrado
+         */
         JPanel panelTitulo = new JPanel();
         panelTitulo.setLayout(new FlowLayout(FlowLayout.CENTER)); 
         JLabel titulo = new JLabel("ÁRBOL BINARIO");
         panelTitulo.add(titulo);
 
+        /** 
+        * Panel de controles que contiene el campo de texto y los botones
+        */
         JPanel controlesArbol = new JPanel();
         controlesArbol.setLayout(new BoxLayout(controlesArbol, BoxLayout.Y_AXIS));
         JTextField campoNodo = new JTextField(3);
 
-        //creación del panel para manejar los botones juntos en un solo Jpanel
+        /** 
+        * Panel que agrupa todos los botones del arbol para facilitar su distribución
+        */
         JPanel panelBotones = new JPanel();
         panelBotones.setLayout(new FlowLayout(FlowLayout.CENTER));  
 
@@ -47,27 +63,36 @@ public class interfaz {
         panelBotones.add(botonEliminar);
         panelBotones.add(botonBuscar);
 
-        //Panel en el que están los botones y el espacio para que el usuario ingrese el valor que quiere 
+        /**
+         * Configuración del panel de controles con el campo de texto y los botones, además 
+         * crea el espacio donde están ambos
+        */
         controlesArbol.add(Box.createVerticalStrut(20)); 
         controlesArbol.add(new JLabel("Valor del Nodo:"));
         controlesArbol.add(campoNodo);
         controlesArbol.add(Box.createVerticalStrut(20));
         controlesArbol.add(panelBotones);
         
-        //agregar titulo y el panel donde están botones y text field
+        /**
+        * Adición de los paneles al panel principal del árbol binario.
+        */
         panelArbol.add(panelTitulo, BorderLayout.NORTH);
         panelArbol.add(controlesArbol, BorderLayout.SOUTH);
         panelArbol.add(graficaArbol, BorderLayout.CENTER);
 
-        //divisores de la ventana para que se muestren los tres a la vez
+       /**
+        * Configuración de los divisores para mostrar el árbol binario, la lista circular
+        * y la lista doble en la misma ventana
+        */
         JSplitPane splitPaneIzquierdo = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelListaCircular, panelArbol); 
         splitPaneIzquierdo.setDividerLocation(500);
-        
         JSplitPane splitPanePrincipal = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitPaneIzquierdo, panelListaDoble);
         splitPanePrincipal.setDividerLocation(1000);
 
-    
-        //action listener para que los botones hagan su función, implementando el manejo de excepciones para algun error de ingreso de datos
+        /**
+        * Configuración de los ActionListeners para los botones de control del árbol binario, cada action listener
+        *realiza una función (eliminar un nodo, agregarlo o buscarlo)
+        */
 
         //agregar los nodos al arbol
         botonAgregar.addActionListener(e -> {
@@ -118,8 +143,11 @@ public class interfaz {
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(ventana, "Ingresaste un dato inválido.");
                     campoNodo.setText("");
+                }catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(ventana, ex.getMessage()); 
+                    campoNodo.setText(""); 
                 }
-            }   
+            }
         );
 
         ventana.setLayout(new BorderLayout());
