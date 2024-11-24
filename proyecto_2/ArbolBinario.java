@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class ArbolBinario {
     private Nodo raiz;
      /** 
@@ -71,10 +73,13 @@ public class ArbolBinario {
 
     /**
      * Elimina un nodo específico del arbol
-     * 
+     * Maneja el caso en que el nodo que el usuario quiere eliminar no se encuentre en el nodo
      * @param valor valor del nodo que se desea eliminar
      */
     public void eliminarNodo(int valor) {
+        if (encontrarNodo(valor) == false){
+            throw new IllegalArgumentException("El nodo ingresado no está en el árbol.");
+        }
         raiz = eliminarNodoRec(raiz, valor);
         }
 
