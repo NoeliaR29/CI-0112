@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 public class ArbolBinario {
     private Nodo raiz;
      /** 
