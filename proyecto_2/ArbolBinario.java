@@ -19,7 +19,7 @@ public class ArbolBinario {
      * Método recursivo que agrega un nodo al árbol segun su valor
      * 
      * @param raiz  raiz del subarbol en el que se debe insertar el nuevo nodo
-     * @param Nodo nodo que se desea agregar
+     * @param nodo nodo que se desea agregar
      * @return retorna el valor de la raiz
      */
     public Nodo agregarNodoRec(Nodo raiz, Nodo nodo) {
