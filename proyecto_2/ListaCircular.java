@@ -2,8 +2,22 @@
 public class ListaCircular{
     private NodoLista primerNodo;
     private NodoLista ultimoNodo;
+
+    /**
+    * constructor de la clase ListaCircular.
+    * inicializa la lista vacía
+    */
+    public ListaCircular(){
+        this.primerNodo = null;
+        this.ultimoNodo = null; 
+    }
     
-    // método de inserción 
+    
+    /**
+     * método para insertar un dato en la lista circular
+     * 
+     * @param dato es el dato ingresado por el usuario que se desea insertar en la lista
+     */
     public void insertarDato(String dato){
         NodoLista nuevoDato = new NodoLista(dato);
         System.out.print("Digite el dato que desea ingresar a la lista"); 
@@ -20,7 +34,12 @@ public class ListaCircular{
         }
     }
     
-     //método para eliminación
+     
+     /**
+     * métod para eliminar un dato de la lista circular
+     * 
+     * @param dato es el dato que el usuario quiera eliminar de la lista
+     */
     public void eliminarDato(String dato){
         if (primerNodo == null){ // si la lista no tiene nada no se elimina nada
             System.out.print("la lista no tiene elementos");
@@ -75,7 +94,13 @@ public class ListaCircular{
         System.out.println("El elemento ingresado(" + dato + ")no está en la lista");
     }
         
-    // método para la búsqueda
+
+     /**
+     * método para buscar un dato en la lista 
+     * 
+     * @param dato el dato que se quire buscar en la lista
+     * @return true si el dato se encuentra en la lista y false si no
+     */
     public boolean buscarDato(String dato){
         if (primerNodo == null){ //considerar si la lista está vacía
             System.out.print("Aún no hay elementos en la lista");
