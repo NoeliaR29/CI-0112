@@ -12,7 +12,45 @@ public class ListaCircular{
         this.ultimoNodo = null; 
     }
     
+    // setters y getters
+
+
+     /**
+     * establece un nuevo valor para el dato del primer nodo
+     * 
+     * @param primerNodo que será el primero nodo de la lista
+     */
+    public void setPrimerNodo(NodoLista primerNodo){
+        this.primerNodo = primerNodo;
+    }
+
+     /**
+     * obtiene el nodo que es actualmente el primer nodo de la lista circular
+     * 
+     * @return el primer nodo en la lista circular
+     */
+    public NodoLista getPrimerNodo(){
+        return primerNodo;
+    }
     
+    /**
+     * establece un valor para el último nodo de la lista 
+     * 
+     * @param ultimoNodo node que será el último nodo de la lista
+     */
+    public void setUltimoNodo(NodoLista ultimoNodo){
+        this.ultimoNodo = ultimoNodo;
+    }
+
+    /**
+     * obtiene el nodo que es actualmente el último nodo en la lista circular
+     * 
+     * @return el último nodo de la lista circular
+     */
+    public NodoLista getUltimoNodo(){
+        return ultimoNodo;
+    }
+
     /**
      * método para insertar un dato en la lista circular
      * 

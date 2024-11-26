@@ -1,4 +1,3 @@
-
 public class NodoLista{
     /**
      * atributos de la clase NodoLista (nodo de la lista circualr)
