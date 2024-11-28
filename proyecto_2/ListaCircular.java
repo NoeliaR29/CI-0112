@@ -1,4 +1,3 @@
-
 public class ListaCircular{
     private NodoLista primerNodo;
     private NodoLista ultimoNodo;
@@ -70,6 +69,7 @@ public class ListaCircular{
             nuevoDato.setSiguiente(primerNodo); //el nuevo apunta al sigueinte, que seria el primero
             ultimoNodo = nuevoDato; //actualizar el ultimo elemento
         }
+    
     }
     
      
@@ -140,7 +140,7 @@ public class ListaCircular{
      * @return true si el dato se encuentra en la lista y false si no
      */
     public boolean buscarDato(String dato){
-        if (primerNodo == null){ //considerar si la lista está vacía
+        if(primerNodo == null){ //considerar si la lista está vacía
             System.out.print("Aún no hay elementos en la lista");
             return false;
         }
@@ -152,12 +152,32 @@ public class ListaCircular{
                 System.out.println("El elemento" + dato + "se encuentra en la lista");
                 return true ;
             }
-            
             elementoActual = elementoActual.getSiguiente();// se pasa al nodo que sigue
         }while(elementoActual != primerNodo); // se sigue hasta recorrer toda la lista y llega al inicio (al primer nodo);
         
         //si se recorre todala lista y no se encuentra el dato se muestra un mensaje al usuario
         System.out.println( dato + "no se encuentra en la lista");
         return false;            
+    }
+    
+    /**
+     * Método para obtener la cantidad de nodos en la lista circular para mejorar la interfza
+     * 
+     * @return cantidad de nodos en la lista
+     */
+    public int getCantidadNodos(){
+        if(primerNodo == null){ // tomar en cuenta la lista sin ningun elemneto 
+            return 0;
+        }
+
+        int contador = 0;
+        NodoLista actual = primerNodo;
+
+        do{
+            contador++;
+            actual = actual.getSiguiente();
+        }while(actual != primerNodo);
+
+        return contador;
     }
 }

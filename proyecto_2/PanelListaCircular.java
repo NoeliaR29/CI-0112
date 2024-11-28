@@ -30,10 +30,8 @@ public class PanelListaCircular extends JPanel{
         super.paintComponent(grafico);
         this.setBackground(new Color(255, 228, 225)); 
         if (listaCircular != null){
-            
             dibujarLista(grafico);
         }
-        
     }
 
     /**
@@ -43,34 +41,72 @@ public class PanelListaCircular extends JPanel{
     private void dibujarLista(Graphics grafico){
         NodoLista actual = listaCircular.getPrimerNodo();
         if (actual == null){ 
-        return; 
+            return; 
         }
         
-        int x = getWidth() / 2, y = 50, radio = 50;
+        // posicioens predefinidas para que se vea circular 
+        int[][] posiciones = {
+            {200, 100}, // nodo 1
+            {300, 150}, // nodo 2
+            {350, 250}, // nodo 3
+            {300, 350}, // nodo 4
+            {200, 400}, // nodo 5
+            {100, 350}, // nodo 6
+            {50, 250},  // nodo 7
+            {100, 150}, // nodo 8
+            {150, 50},  // nodo 9
+            {250, 50}   // nodo 10
+            };
+
+        int radioNodo = 50; // tamaño del nodo
+        int index = 0;
+        int cantidadNodos = listaCircular.getCantidadNodos();
+
+        NodoLista primero = actual; // referencia al primero nodo
+
         do{
-            // para hacer el dibujo del nodo
+            int xNodo = posiciones[index][0];
+            int yNodo = posiciones[index][1];
+
+            // para hacer dibujo del nodo
             grafico.setColor(Color.CYAN);
-            grafico.fillOval(x - radio / 2, y - radio / 2, radio, radio);
+            grafico.fillOval(xNodo - radioNodo / 2, yNodo - radioNodo / 2, radioNodo, radioNodo);
             grafico.setColor(Color.BLACK);
-            grafico.drawOval(x - radio / 2, y - radio / 2, radio, radio);
-            grafico.drawString(actual.getDato(), x - 10, y + 5);
+            grafico.drawOval(xNodo - radioNodo / 2, yNodo - radioNodo / 2, radioNodo, radioNodo);
+            grafico.drawString(actual.getDato(), xNodo - 10, yNodo + 5);
 
-            // para dbujar la flecha aputnando al siguiente nodo
-            if (actual.getSiguiente() != listaCircular.getPrimerNodo()){
-                grafico.drawLine(x, y + radio / 2, x + 100, y + radio / 2);
-                grafico.drawLine(x + 90, y + radio / 2 - 10, x + 100, y + radio / 2);
-                grafico.drawLine(x + 90, y + radio / 2 + 10, x + 100, y + radio / 2);
-            }
+            // dibujo de la flecha apuntando al nodo que sigue
+            NodoLista siguiente = actual.getSiguiente();
+            
+            if(siguiente != null && siguiente != primero){ // si es así, no se dibuja la fecha hacia el primeor aun
+                
+                int siguienteIndex = (index + 1) % posiciones.length;
+                int xSiguiente = posiciones[siguienteIndex][0];
+                int ySiguiente = posiciones[siguienteIndex][1];
 
-            x += 120; // mover una posición hacia el nod siguiente 
-            if (x > getWidth() - 100){
-                x = getWidth() / 2;
-                y += 100;
+                // dibujo de linea entre cada nodo
+                grafico.drawLine(xNodo, yNodo, xSiguiente, ySiguiente);
+
+                // punta de flecha
+                grafico.fillOval(xSiguiente - 5, ySiguiente - 5, 10, 10); 
             }
 
             actual = actual.getSiguiente();
-        } while (actual != listaCircular.getPrimerNodo());
+            index++;
+        }while(actual != primero && index < cantidadNodos);
+
+        // flecha de regreso al nodo que está de primero para que se vea "circular" 
+        if (cantidadNodos > 1){
+            int xUltimo = posiciones[index - 1][0];
+            int yUltimo = posiciones[index - 1][1];
+            int xPrimero = posiciones[0][0];
+            int yPrimero = posiciones[0][1];
+
+            grafico.drawLine(xUltimo, yUltimo, xPrimero, yPrimero);
+            grafico.fillOval(xPrimero - 5, yPrimero - 5, 10, 10); // Punta de flecha al primer nodo
+        }
     }
+        
 
     /**
      * interfaz del panel  de la lista circular
@@ -111,7 +147,7 @@ public class PanelListaCircular extends JPanel{
             
             JOptionPane.showMessageDialog(this, " Se ha insertado el dato : " + dato);
             campoDato.setText("");
-            
+            repaint(); //para verse apenas se agrgue el dato
         }catch(Exception e) {
             JOptionPane.showMessageDialog(this, "Ha ingresado un dato no válido");
         }
@@ -128,7 +164,7 @@ public class PanelListaCircular extends JPanel{
             
             JOptionPane.showMessageDialog(this, " Se ha eliminado el dato: " + dato);
             campoDato.setText("");
-            
+            repaint(); //para que se vea apenas se elimine
         }catch(Exception e) {
             JOptionPane.showMessageDialog(this, "Ha ingresado un dato no válido");
         }
@@ -154,5 +190,4 @@ public class PanelListaCircular extends JPanel{
             JOptionPane.showMessageDialog(this, "Error al buscar el dato.");
         }
     }
-    
   }
