@@ -20,6 +20,7 @@ public class Interfaz extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         configInterfaz(); 
         pack(); 
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null); 
     }
     
@@ -37,7 +38,7 @@ public class Interfaz extends JFrame {
 
         // Configuración del JSplitPane
         JSplitPane splitPaneIzquierdo = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelListaCircular, panelArbol);
-        splitPaneIzquierdo.setDividerLocation(500); 
+        splitPaneIzquierdo.setDividerLocation(0.5); 
 
         splitPanePrincipal.setLeftComponent(splitPaneIzquierdo);
         splitPanePrincipal.setRightComponent(panelListaDoble);
@@ -45,11 +46,13 @@ public class Interfaz extends JFrame {
         // Configuración de un panel sur para botones adicionales o información
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        // Añade un margen alrededor del panel del sur
-        southPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
         getContentPane().add(splitPanePrincipal, BorderLayout.CENTER);
         getContentPane().add(southPanel, BorderLayout.SOUTH);
+
+        Dimension dimensionMinima = new Dimension(200, 150);
+        panelArbol.setMinimumSize(dimensionMinima);
+        panelListaDoble.setMinimumSize(dimensionMinima);
+        panelListaCircular.setMinimumSize(dimensionMinima);
     }
 
     /**
