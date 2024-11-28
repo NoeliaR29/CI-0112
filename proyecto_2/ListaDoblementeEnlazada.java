@@ -7,6 +7,13 @@ public class ListaDoblementeEnlazada {
         this.cola = null;
     }
 
+    public NodoListaDoblemente getCabeza(){
+        return this.cabeza;
+    }
+    public NodoListaDoblemente getCola(){
+        return this.cola;
+    }
+
     //Metodo para agragar nodo al inicio
     public void agregarAlInicio(int dato){
         NodoListaDoblemente nuevoNodo = new NodoListaDoblemente(dato);
@@ -33,40 +40,50 @@ public class ListaDoblementeEnlazada {
     }
 
     //Metodo para buscar un nodo en la lista
-    public NodoListaDoblemente buscar(int dato){
+    public boolean  buscar(int dato){
         NodoListaDoblemente nodoActual = cabeza; //Empieza en la cabesza
         while (nodoActual != null){
             if(nodoActual.getDato() == dato){
-                return nodoActual;
+                return true;
             }
-            nodoActual.getNodoSiguiente(); // Continua con el siguiente nodo
+            nodoActual = nodoActual.getNodoSiguiente(); // Continua con el siguiente nodo
         }
-        return null; // Retorna null en caso de no encontrar el dato.
+        return false; // Retorna false en caso de no encontrar el dato.
     }
 
-    public void eliminar(int dato){
-        NodoListaDoblemente nodoEliminar = buscar(dato);
-
-        if(nodoEliminar == null){
-            return; //No se encuentra el nodo
+    public boolean eliminar(int dato){
+        if(cabeza == null){
+            return false; //No se encuentra el nodo en la lista
+        }
+        NodoListaDoblemente nodoActual = cabeza;
+        while (nodoActual != null && nodoActual.getDato() != dato){
+           nodoActual = nodoActual.getNodoSiguiente();
+        }
+        if (nodoActual == null) {
+            return false;
         }
 
-        if(cabeza == cola){
-            cabeza = null;
-            cola = null;
-        } else if (nodoEliminar == cabeza) {
+        if(nodoActual == cabeza){ //
             cabeza = cabeza.getNodoSiguiente();
-            if (cabeza != null){
+            if (cabeza != null) {
                 cabeza.setNodoAnterior(null);
-
             }
-        }else if (nodoEliminar == cola) {
-            cola.getNodoAnterior();
+        }else if (nodoActual == cola) {
+            cola = cola.getNodoAnterior();
             if(cola != null){
                 cola.setNodoSiguiente(null);
             }
         }else{//nodo en algun otro punto de la lista
-
+            NodoListaDoblemente anterior = nodoActual.getNodoAnterior();
+            NodoListaDoblemente siguiente = nodoActual.getNodoSiguiente();
+            
+            if(anterior != null){
+                anterior.setNodoSiguiente(siguiente);
+            }
+            if(siguiente != null){
+                siguiente.setNodoAnterior(anterior);
+            }
         }
+        return true;
     }
 }
