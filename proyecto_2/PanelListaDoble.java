@@ -54,10 +54,10 @@ public class PanelListaDoble extends JPanel {
 
             // Dibujo de las líneas hacia el siguiente y anterior nodo
             if (nodo.getNodoSiguiente() != null) {
-                g.drawLine(x + 50, y + 25, x + espacioHorizontal + 50, y + 25); // Línea hacia el siguiente nodo
+                g.drawLine(x + 50, y + 15, x + espacioHorizontal + 50, y + 15); // Línea hacia el siguiente nodo
             }
             if (nodo.getNodoAnterior() != null) {
-                g.drawLine(x, y + 25, x - espacioHorizontal, y + 25); // Línea hacia el nodo anterior
+                g.drawLine(x, y + 35, x - espacioHorizontal, y + 35); // Línea hacia el nodo anterior
             }
 
             // Mover x para el siguiente nodo
