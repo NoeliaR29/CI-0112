@@ -143,30 +143,52 @@ public class PanelListaCircular extends JPanel{
     private void insertarDato(){
         try {
             String dato = campoDato.getText();
+            if (dato.equals("")){
+                JOptionPane.showMessageDialog(this, "Por favor ingrese un dato válido");
+                return;
+            }
+
             listaCircular.insertarDato(dato);
             
             JOptionPane.showMessageDialog(this, " Se ha insertado el dato : " + dato);
             campoDato.setText("");
+
             repaint(); //para verse apenas se agrgue el dato
         }catch(Exception e) {
+
             JOptionPane.showMessageDialog(this, "Ha ingresado un dato no válido");
+            campoDato.setText("");
         }
     }
     
     /**
-     * método para eliminra un dato de la lista 
+     * método para eliminar un dato de la lista 
      * valida la entrada del usuaro para asegurarse que sea válida
      */
     private void eliminarDato(){
         try {
             String dato = campoDato.getText();
+            if(dato.equals("")){
+                JOptionPane.showMessageDialog(this, "Por favor ingrese un dato válido");
+                return;
+            }
+
+            if(!listaCircular.buscarDato(dato)){ //para que no "elimine" uno que no está 
+                JOptionPane.showMessageDialog(this, "El dato no se puede eliminar porque no está en la lista");
+                campoDato.setText("");
+                return;
+            }
+
             listaCircular.eliminarDato(dato);
             
             JOptionPane.showMessageDialog(this, " Se ha eliminado el dato: " + dato);
             campoDato.setText("");
+
             repaint(); //para que se vea apenas se elimine
+        
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ingresado un dato no válido");
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error");
+            campoDato.setText("");
         }
     }  
     
@@ -178,6 +200,11 @@ public class PanelListaCircular extends JPanel{
         try {
             String dato = campoDato.getText();
             boolean encontrado = listaCircular.buscarDato(dato);
+            
+            if(dato.equals("")){
+                JOptionPane.showMessageDialog(this, "Por favor ingrese un dato válido");
+                return;
+            }
             
             if (encontrado) {
                 JOptionPane.showMessageDialog(this, "El dato está en la lista.");
