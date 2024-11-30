@@ -1,44 +1,44 @@
 # **Interfaz de Estructuras de Datos**
 
 ## **Descripción**
-Este proyecto es una aplicación gráfica desarrollada en Java que permite visualizar y manipular tres estructuras de datos comunes:
+Este proyecto es una aplicación gráfica desarrollada en que permite al usuario visualizar y manipular tres estructuras:
 - Árbol binario
 - Lista circular
 - Lista doblemente enlazada
 
-La interfaz gráfica divide la ventana en diferentes paneles, cada uno diseñado para representar visualmente una estructura específica. Los usuarios pueden interactuar con las estructuras a través de botones y campos de texto.
+La parte gráfica de nuestro proyecto permite que el usuario pueda interactuar de la manera mas simple posible con cada estructura de datos implementada en el programa, logrando así una experiencia agradable.
 
 ---
 
 ## **Características**
 ### **Interfaz gráfica (Clase `Interfaz`)**
-- La ventana principal organiza los paneles de las estructuras de datos utilizando `JSplitPane` para una visualización flexible.
-- Permite visualizar y manipular las tres estructuras de manera independiente.
+- La ventana principal organiza los paneles de las estructuras de datos utilizando `JSplitPane` para una visualización flexible, esto beneficia al usuario en caso de que una parte gráfica de alguna estructura se extienda.
+- Permite visualizar y manipular las tres estructuras de manera simultánea
 
 ### **Paneles individuales**
-1. **`PanelArbolBinario`**: Representación gráfica de un árbol binario.
-   - Los nodos se pueden agregar y visualizar de forma jerárquica.
-2. **`PanelListaCircular`**: Maneja una lista circular.
-   - Operaciones incluidas: agregar, eliminar y buscar nodos.
-   - Representación gráfica circular.
-3. **`PanelListaDoble`**: Maneja una lista doblemente enlazada.
-   - Operaciones incluidas: agregar al inicio/final, eliminar y buscar nodos.
-   - Representación gráfica lineal con flechas que muestran las conexiones entre nodos.
+1. **`PanelArbolBinario`**: Representación gráfica de un árbol binario
+   - Los nodos se pueden agregar y visualizar de forma jerárquica
+2. **`PanelListaCircular`**: Maneja una lista circular
+   - Operaciones incluidas: agregar, eliminar y buscar nodos
+   - Representación gráfica circular
+3. **`PanelListaDoble`**: Maneja una lista doblemente enlazada
+   - Operaciones incluidas: agregar al inicio/final, eliminar y buscar nodos
+   - Representación gráfica lineal con flechas que muestran las conexiones entre nodos
 
 ---
 
 ## **Estructuras principales**
 ### **Árbol Binario (`PanelArbolBinario`)**
-- Implementado como un árbol binario clásico.
-- Permite agregar nodos e inspeccionar la estructura en tiempo real.
+- Implementado como un árbol binario
+- Permite agregar nodos e inspeccionar la estructura en tiempo real
 
 ### **Lista Circular (`PanelListaCircular`)**
-- Implementa una lista enlazada circular.
-- Los nodos se enlazan formando un ciclo.
+- Implementa una lista enlazada circular
+- Los nodos se enlazan formando un ciclo
 - Operaciones:
-  - **Agregar nodo**: Inserta un nuevo nodo.
-  - **Eliminar nodo**: Busca y elimina un nodo específico.
-  - **Buscar nodo**: Comprueba si un nodo está presente en la lista.
+  - **Agregar nodo**: Inserta un nuevo nodo
+  - **Eliminar nodo**: Busca y elimina un nodo específico
+  - **Buscar nodo**: Comprueba si un nodo está presente en la lista
 
 ### **Lista Doblemente Enlazada (`PanelListaDoble`)**
 - Los nodos contienen referencias al nodo anterior y al nodo siguiente.
@@ -55,8 +55,8 @@ La interfaz gráfica divide la ventana en diferentes paneles, cada uno diseñado
 
 ---
 ## **Cómo Ejecutar**
-1. Clona el repositorio o descarga los archivos fuente del proyecto.
-2. Compila y ejecuta la clase `Interfaz` desde tu IDE o desde la línea de comandos:
+1. Se necesita clonar el repositorio para acceder al código implementado en github
+2. Ejecutar correctamente la clase interfaz, ya que esta posee todo el método listo para ejecutarse correctamente, todo esto mediante el llamado de múltiples clases en la interfaz
    ```bash
-   javac Interfaz.java
-   java Interfaz
+   Interfaz.java
+
